@@ -1,11 +1,16 @@
-V3 7
-FL C:/fpga/pong/main.vhd 2013/02/21.18:24:26 P.15xf
-EN work/main 1361499658 FL C:/fpga/pong/main.vhd PB ieee/std_logic_1164 1335251622 \
+V3 11
+FL C:/fpga/pong/main.vhd 2013/02/22.15:41:49 P.15xf
+EN work/main 1361569317 FL C:/fpga/pong/main.vhd PB ieee/std_logic_1164 1335251622 \
       PB ieee/std_logic_arith 1335251623 PB ieee/STD_LOGIC_UNSIGNED 1335251625
-AR work/main/Behavioral 1361499659 \
-      FL C:/fpga/pong/main.vhd EN work/main 1361499658 CP vga
-FL C:/fpga/pong/vga.vhd 2013/02/21.20:20:49 P.15xf
-EN work/vga 1361499656 FL C:/fpga/pong/vga.vhd PB ieee/std_logic_1164 1335251622 \
+AR work/main/Behavioral 1361569318 \
+      FL C:/fpga/pong/main.vhd EN work/main 1361569317 CP speaker CP vga
+FL C:/fpga/pong/speaker.vhd 2013/02/22.15:16:32 P.15xf
+EN work/speaker 1361569313 FL C:/fpga/pong/speaker.vhd PB ieee/std_logic_1164 1335251622 \
       PB ieee/std_logic_arith 1335251623 PB ieee/STD_LOGIC_UNSIGNED 1335251625
-AR work/vga/Behavioral 1361499657 \
-      FL C:/fpga/pong/vga.vhd EN work/vga 1361499656
+AR work/speaker/Behavioral 1361569314 \
+      FL C:/fpga/pong/speaker.vhd EN work/speaker 1361569313
+FL C:/fpga/pong/vga.vhd 2013/02/22.13:16:43 P.15xf
+EN work/vga 1361569315 FL C:/fpga/pong/vga.vhd PB ieee/std_logic_1164 1335251622 \
+      PB ieee/std_logic_arith 1335251623 PB ieee/STD_LOGIC_UNSIGNED 1335251625
+AR work/vga/Behavioral 1361569316 \
+      FL C:/fpga/pong/vga.vhd EN work/vga 1361569315

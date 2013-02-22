@@ -1,2 +1,3 @@
 vhdl work "vga.vhd"
+vhdl work "speaker.vhd"
 vhdl work "main.vhd"

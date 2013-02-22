@@ -4,13 +4,13 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> Reading design: main.prj
 
@@ -104,16 +104,20 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
+Compiling vhdl file "C:/fpga/pong/speaker.vhd" in Library work.
+Architecture behavioral of Entity speaker is up to date.
 Compiling vhdl file "C:/fpga/pong/vga.vhd" in Library work.
-Entity <vga> compiled.
-Entity <vga> (Architecture <behavioral>) compiled.
+Architecture behavioral of Entity vga is up to date.
 Compiling vhdl file "C:/fpga/pong/main.vhd" in Library work.
-Architecture behavioral of Entity main is up to date.
+Entity <main> compiled.
+Entity <main> (Architecture <behavioral>) compiled.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
 =========================================================================
 Analyzing hierarchy for entity <main> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <speaker> in library <work> (architecture <behavioral>).
 
 Analyzing hierarchy for entity <vga> in library <work> (architecture <behavioral>).
 
@@ -122,9 +126,12 @@ Analyzing hierarchy for entity <vga> in library <work> (architecture <behavioral
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing Entity <main> in library <work> (Architecture <behavioral>).
-WARNING:Xst:819 - "C:/fpga/pong/main.vhd" line 57: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <w>, <x>, <y>
+WARNING:Xst:819 - "C:/fpga/pong/main.vhd" line 85: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <w>, <y>, <x>
 Entity <main> analyzed. Unit <main> generated.
+
+Analyzing Entity <speaker> in library <work> (Architecture <behavioral>).
+Entity <speaker> analyzed. Unit <speaker> generated.
 
 Analyzing Entity <vga> in library <work> (Architecture <behavioral>).
 Entity <vga> analyzed. Unit <vga> generated.
@@ -136,32 +143,45 @@ Entity <vga> analyzed. Unit <vga> generated.
 
 Performing bidirectional port resolution...
 
+Synthesizing Unit <speaker>.
+    Related source file is "C:/fpga/pong/speaker.vhd".
+    Found 25-bit register for signal <prescaler>.
+    Found 25-bit adder for signal <prescaler$add0000> created at line 33.
+    Found 1-bit register for signal <sout>.
+    Found 25-bit comparator greatequal for signal <sout$cmp_ge0000> created at line 29.
+    Summary:
+	inferred  26 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+Unit <speaker> synthesized.
+
+
 Synthesizing Unit <vga>.
     Related source file is "C:/fpga/pong/vga.vhd".
-WARNING:Xst:1305 - Output <LED> is never assigned. Tied to value 00000000.
     Found 1-bit register for signal <HS>.
     Found 1-bit register for signal <W>.
     Found 10-bit register for signal <X>.
     Found 10-bit register for signal <Y>.
+    Found 1-bit register for signal <FRAME>.
     Found 1-bit register for signal <VS>.
     Found 8-bit register for signal <RGB>.
     Found 10-bit up counter for signal <horiz>.
-    Found 11-bit comparator greater for signal <HS$cmp_gt0000> created at line 44.
-    Found 11-bit comparator less for signal <HS$cmp_lt0000> created at line 44.
+    Found 11-bit comparator greater for signal <HS$cmp_gt0000> created at line 43.
+    Found 11-bit comparator less for signal <HS$cmp_lt0000> created at line 43.
     Found 10-bit up counter for signal <vert>.
-    Found 11-bit comparator greater for signal <VS$cmp_gt0000> created at line 50.
-    Found 11-bit comparator less for signal <VS$cmp_lt0000> created at line 50.
+    Found 11-bit comparator greater for signal <VS$cmp_gt0000> created at line 49.
+    Found 11-bit comparator less for signal <VS$cmp_lt0000> created at line 49.
     Found 11-bit comparator greatequal for signal <W$cmp_ge0000> created at line 32.
     Found 11-bit comparator greatequal for signal <W$cmp_ge0001> created at line 32.
     Found 11-bit comparator less for signal <W$cmp_lt0000> created at line 32.
     Found 11-bit comparator less for signal <W$cmp_lt0001> created at line 32.
-    Found 10-bit adder for signal <X$add0000> created at line 37.
-    Found 10-bit subtractor for signal <X$addsub0000> created at line 37.
-    Found 10-bit adder for signal <Y$add0000> created at line 38.
-    Found 10-bit subtractor for signal <Y$addsub0000> created at line 38.
+    Found 10-bit adder for signal <X$add0000> created at line 36.
+    Found 10-bit subtractor for signal <X$addsub0000> created at line 36.
+    Found 10-bit adder for signal <Y$add0000> created at line 37.
+    Found 10-bit subtractor for signal <Y$addsub0000> created at line 37.
     Summary:
 	inferred   2 Counter(s).
-	inferred  31 D-type flip-flop(s).
+	inferred  32 D-type flip-flop(s).
 	inferred   4 Adder/Subtractor(s).
 	inferred   8 Comparator(s).
 Unit <vga> synthesized.
@@ -169,13 +189,92 @@ Unit <vga> synthesized.
 
 Synthesizing Unit <main>.
     Related source file is "C:/fpga/pong/main.vhd".
+WARNING:Xst:653 - Signal <ph> is used but never assigned. This sourceless signal will be automatically connected to value 00100000.
+WARNING:Xst:653 - Signal <cw> is used but never assigned. This sourceless signal will be automatically connected to value 00001010.
 WARNING:Xst:737 - Found 8-bit latch for signal <inrgb>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-    Found 11-bit comparator greatequal for signal <inrgb$cmp_ge0000> created at line 59.
-    Found 11-bit comparator greatequal for signal <inrgb$cmp_ge0001> created at line 59.
-    Found 11-bit comparator lessequal for signal <inrgb$cmp_le0000> created at line 59.
-    Found 11-bit comparator lessequal for signal <inrgb$cmp_le0001> created at line 59.
+    Found 6-bit register for signal <cdx>.
+    Found 6-bit adder for signal <cdx$addsub0000> created at line 129.
+    Found 6-bit adder for signal <cdx$sub0000> created at line 105.
+    Found 6-bit adder for signal <cdx$sub0001> created at line 121.
+    Found 6-bit register for signal <cdy>.
+    Found 6-bit adder for signal <cdy$sub0000> created at line 113.
+    Found 11-bit up accumulator for signal <cx>.
+    Found 11-bit up accumulator for signal <cy>.
+    Found 25-bit register for signal <hper>.
+    Found 11-bit adder for signal <hper$add0000> created at line 124.
+    Found 11-bit adder for signal <hper$add0001> created at line 116.
+    Found 11-bit subtractor for signal <hper$sub0000> created at line 124.
+    Found 11-bit subtractor for signal <hper$sub0001> created at line 116.
+    Found 11-bit comparator greatequal for signal <inrgb$cmp_ge0000> created at line 161.
+    Found 11-bit comparator greatequal for signal <inrgb$cmp_ge0001> created at line 161.
+    Found 11-bit comparator greatequal for signal <inrgb$cmp_ge0002> created at line 162.
+    Found 11-bit comparator greatequal for signal <inrgb$cmp_ge0003> created at line 162.
+    Found 11-bit comparator greatequal for signal <inrgb$cmp_ge0004> created at line 164.
+    Found 11-bit comparator greatequal for signal <inrgb$cmp_ge0005> created at line 164.
+    Found 11-bit comparator greatequal for signal <inrgb$cmp_ge0006> created at line 166.
+    Found 11-bit comparator greatequal for signal <inrgb$cmp_ge0007> created at line 166.
+    Found 11-bit comparator lessequal for signal <inrgb$cmp_le0000> created at line 161.
+    Found 11-bit comparator lessequal for signal <inrgb$cmp_le0001> created at line 161.
+    Found 11-bit comparator lessequal for signal <inrgb$cmp_le0002> created at line 162.
+    Found 11-bit comparator lessequal for signal <inrgb$cmp_le0003> created at line 162.
+    Found 11-bit comparator lessequal for signal <inrgb$cmp_le0004> created at line 164.
+    Found 11-bit comparator lessequal for signal <inrgb$cmp_le0005> created at line 164.
+    Found 11-bit comparator lessequal for signal <inrgb$cmp_le0006> created at line 166.
+    Found 11-bit comparator lessequal for signal <inrgb$cmp_le0007> created at line 166.
+    Found 11-bit updown accumulator for signal <lp>.
+    Found 11-bit comparator greatequal for signal <lp$cmp_ge0000> created at line 134.
+    Found 6-bit comparator greatequal for signal <lp$cmp_ge0001> created at line 132.
+    Found 11-bit comparator greater for signal <lp$cmp_gt0000> created at line 133.
+    Found 11-bit comparator lessequal for signal <lp$cmp_le0000> created at line 133.
+    Found 11-bit subtractor for signal <lp$sub0000> created at line 134.
+    Found 19-bit register for signal <prescaler>.
+    Found 11-bit adder for signal <prescaler$add0000> created at line 124.
+    Found 11-bit adder for signal <prescaler$add0001> created at line 124.
+    Found 11-bit adder for signal <prescaler$add0002> created at line 116.
+    Found 11-bit adder for signal <prescaler$add0003> created at line 124.
+    Found 19-bit adder for signal <prescaler$addsub0000> created at line 151.
+    Found 11-bit comparator greatequal for signal <prescaler$cmp_ge0000> created at line 124.
+    Found 11-bit comparator greatequal for signal <prescaler$cmp_ge0001> created at line 124.
+    Found 11-bit comparator greatequal for signal <prescaler$cmp_ge0002> created at line 116.
+    Found 11-bit comparator greatequal for signal <prescaler$cmp_ge0003> created at line 116.
+    Found 11-bit comparator greatequal for signal <prescaler$cmp_ge0004> created at line 108.
+    Found 11-bit comparator greatequal for signal <prescaler$cmp_ge0005> created at line 100.
+    Found 11-bit comparator lessequal for signal <prescaler$cmp_le0000> created at line 124.
+    Found 11-bit comparator lessequal for signal <prescaler$cmp_le0001> created at line 124.
+    Found 11-bit comparator lessequal for signal <prescaler$cmp_le0002> created at line 116.
+    Found 11-bit comparator lessequal for signal <prescaler$cmp_le0003> created at line 116.
+    Found 11-bit comparator lessequal for signal <prescaler$cmp_le0004> created at line 108.
+    Found 11-bit comparator lessequal for signal <prescaler$cmp_le0005> created at line 100.
+    Found 11-bit subtractor for signal <prescaler$sub0000> created at line 124.
+    Found 11-bit subtractor for signal <prescaler$sub0001> created at line 116.
+    Found 11-bit subtractor for signal <prescaler$sub0002> created at line 116.
+    Found 11-bit subtractor for signal <prescaler$sub0003> created at line 124.
+    Found 11-bit updown accumulator for signal <rp>.
+    Found 11-bit comparator greatequal for signal <rp$cmp_ge0000> created at line 140.
+    Found 11-bit comparator greater for signal <rp$cmp_gt0000> created at line 139.
+    Found 11-bit comparator lessequal for signal <rp$cmp_le0000> created at line 139.
+    Found 6-bit comparator less for signal <rp$cmp_lt0000> created at line 132.
+    Found 11-bit subtractor for signal <rp$sub0000> created at line 140.
+    Found 1-bit register for signal <son>.
+    Found 20-bit comparator greatequal for signal <son$cmp_ge0000> created at line 147.
+    Found 11-bit comparator greater for signal <son$cmp_gt0000> created at line 100.
+    Found 11-bit comparator greater for signal <son$cmp_gt0001> created at line 108.
+    Found 11-bit comparator greater for signal <son$cmp_gt0002> created at line 116.
+    Found 11-bit comparator greater for signal <son$cmp_gt0003> created at line 116.
+    Found 11-bit comparator greater for signal <son$cmp_gt0004> created at line 124.
+    Found 11-bit comparator greater for signal <son$cmp_gt0005> created at line 124.
+    Found 11-bit comparator less for signal <son$cmp_lt0000> created at line 100.
+    Found 11-bit comparator less for signal <son$cmp_lt0001> created at line 108.
+    Found 11-bit comparator less for signal <son$cmp_lt0002> created at line 116.
+    Found 11-bit comparator less for signal <son$cmp_lt0003> created at line 116.
+    Found 11-bit comparator less for signal <son$cmp_lt0004> created at line 124.
+    Found 11-bit comparator less for signal <son$cmp_lt0005> created at line 124.
+    Found 20-bit comparator less for signal <son$cmp_lt0006> created at line 147.
     Summary:
-	inferred   4 Comparator(s).
+	inferred   4 Accumulator(s).
+	inferred  57 D-type flip-flop(s).
+	inferred  19 Adder/Subtractor(s).
+	inferred  50 Comparator(s).
 Unit <main> synthesized.
 
 
@@ -183,22 +282,38 @@ Unit <main> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 4
+# Adders/Subtractors                                   : 24
  10-bit adder                                          : 2
  10-bit subtractor                                     : 2
+ 11-bit adder                                          : 6
+ 11-bit subtractor                                     : 8
+ 19-bit adder                                          : 1
+ 25-bit adder                                          : 1
+ 6-bit adder                                           : 4
 # Counters                                             : 2
  10-bit up counter                                     : 2
-# Registers                                            : 6
- 1-bit register                                        : 3
+# Accumulators                                         : 4
+ 11-bit up accumulator                                 : 2
+ 11-bit updown accumulator                             : 2
+# Registers                                            : 14
+ 1-bit register                                        : 6
  10-bit register                                       : 2
+ 19-bit register                                       : 1
+ 25-bit register                                       : 2
+ 6-bit register                                        : 2
  8-bit register                                        : 1
 # Latches                                              : 1
  8-bit latch                                           : 1
-# Comparators                                          : 12
- 11-bit comparator greatequal                          : 4
- 11-bit comparator greater                             : 2
- 11-bit comparator less                                : 4
- 11-bit comparator lessequal                           : 2
+# Comparators                                          : 59
+ 11-bit comparator greatequal                          : 18
+ 11-bit comparator greater                             : 10
+ 11-bit comparator less                                : 10
+ 11-bit comparator lessequal                           : 16
+ 20-bit comparator greatequal                          : 1
+ 20-bit comparator less                                : 1
+ 25-bit comparator greatequal                          : 1
+ 6-bit comparator greatequal                           : 1
+ 6-bit comparator less                                 : 1
 
 =========================================================================
 
@@ -206,43 +321,116 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
+WARNING:Xst:1293 - FF/Latch <hper_24> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_23> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_22> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_21> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_20> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_19> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_18> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_17> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_16> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_15> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_14> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_13> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_10> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_9> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_8> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_7> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_6> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_5> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_4> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_3> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_2> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_1> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_0> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 4
+# Adders/Subtractors                                   : 24
  10-bit adder                                          : 2
  10-bit subtractor                                     : 2
+ 11-bit adder                                          : 6
+ 11-bit subtractor                                     : 8
+ 19-bit adder                                          : 1
+ 25-bit adder                                          : 1
+ 6-bit adder                                           : 4
 # Counters                                             : 2
  10-bit up counter                                     : 2
-# Registers                                            : 31
- Flip-Flops                                            : 31
+# Accumulators                                         : 4
+ 11-bit up accumulator                                 : 2
+ 11-bit updown accumulator                             : 2
+# Registers                                            : 115
+ Flip-Flops                                            : 115
 # Latches                                              : 1
  8-bit latch                                           : 1
-# Comparators                                          : 12
- 11-bit comparator greatequal                          : 4
- 11-bit comparator greater                             : 2
- 11-bit comparator less                                : 4
- 11-bit comparator lessequal                           : 2
+# Comparators                                          : 59
+ 11-bit comparator greatequal                          : 18
+ 11-bit comparator greater                             : 10
+ 11-bit comparator less                                : 10
+ 11-bit comparator lessequal                           : 16
+ 20-bit comparator greatequal                          : 1
+ 20-bit comparator less                                : 1
+ 25-bit comparator greatequal                          : 1
+ 6-bit comparator greatequal                           : 1
+ 6-bit comparator less                                 : 1
 
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-INFO:Xst:2261 - The FF/Latch <7> in Unit <LPM_LATCH_1> is equivalent to the following 4 FFs/Latches, which will be removed : <6> <5> <1> <0> 
-INFO:Xst:2261 - The FF/Latch <4> in Unit <LPM_LATCH_1> is equivalent to the following 2 FFs/Latches, which will be removed : <3> <2> 
+WARNING:Xst:1293 - FF/Latch <hper_24> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_23> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_22> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_21> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_20> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_19> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_18> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_17> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_16> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_15> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_14> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_13> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_10> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_9> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_8> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_7> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_6> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_5> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_4> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_3> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_2> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_1> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <hper_0> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <hper_11> in Unit <main> is equivalent to the following FF/Latch, which will be removed : <hper_12> 
+INFO:Xst:2261 - The FF/Latch <7> in Unit <LPM_LATCH_1> is equivalent to the following 7 FFs/Latches, which will be removed : <6> <5> <4> <3> <2> <1> <0> 
+WARNING:Xst:1293 - FF/Latch <cdy_0> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cdy_1> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
 
 Optimizing unit <main> ...
+WARNING:Xst:1293 - FF/Latch <cdx_0> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cdx_1> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cdx_2> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cdx_1> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cdx_2> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cdx_1> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cdx_2> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cdx_1> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cdx_2> has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <speaker> ...
 
 Optimizing unit <vga> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-INFO:Xst:2261 - The FF/Latch <VGADriver/RGB_4> in Unit <main> is equivalent to the following 2 FFs/Latches, which will be removed : <VGADriver/RGB_3> <VGADriver/RGB_2> 
-INFO:Xst:2261 - The FF/Latch <VGADriver/RGB_7> in Unit <main> is equivalent to the following 4 FFs/Latches, which will be removed : <VGADriver/RGB_6> <VGADriver/RGB_5> <VGADriver/RGB_1> <VGADriver/RGB_0> 
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 2.
+INFO:Xst:2261 - The FF/Latch <VGADriver/RGB_7> in Unit <main> is equivalent to the following 7 FFs/Latches, which will be removed : <VGADriver/RGB_6> <VGADriver/RGB_5> <VGADriver/RGB_4> <VGADriver/RGB_3> <VGADriver/RGB_2> <VGADriver/RGB_1> <VGADriver/RGB_0> 
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 13.
+FlipFlop lp_5 has been replicated 1 time(s)
+FlipFlop rp_5 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -250,8 +438,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 45
- Flip-Flops                                            : 45
+# Registers                                            : 145
+ Flip-Flops                                            : 145
 
 =========================================================================
 
@@ -277,35 +465,36 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 19
+# IOs                              : 20
 
 Cell Usage :
-# BELS                             : 189
+# BELS                             : 1250
 #      GND                         : 1
-#      INV                         : 11
-#      LUT1                        : 33
-#      LUT2                        : 1
-#      LUT2_L                      : 1
-#      LUT3                        : 6
+#      INV                         : 71
+#      LUT1                        : 76
+#      LUT2                        : 225
+#      LUT2_D                      : 2
+#      LUT2_L                      : 10
+#      LUT3                        : 65
 #      LUT3_L                      : 3
-#      LUT4                        : 29
-#      LUT4_D                      : 1
-#      LUT4_L                      : 4
-#      MUXCY                       : 45
-#      MUXF5                       : 3
+#      LUT4                        : 127
+#      LUT4_D                      : 4
+#      LUT4_L                      : 6
+#      MUXCY                       : 404
+#      MUXF5                       : 7
 #      VCC                         : 1
-#      XORCY                       : 50
-# FlipFlops/Latches                : 47
-#      FD                          : 1
-#      FDE                         : 20
-#      FDR                         : 13
-#      FDRE                        : 10
-#      FDS                         : 1
-#      LD                          : 2
-# Clock Buffers                    : 1
+#      XORCY                       : 248
+# FlipFlops/Latches                : 146
+#      FD                          : 25
+#      FDE                         : 68
+#      FDR                         : 40
+#      FDRE                        : 12
+#      LD                          : 1
+# Clock Buffers                    : 2
+#      BUFG                        : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 18
-#      OBUF                        : 18
+# IO Buffers                       : 19
+#      OBUF                        : 19
 =========================================================================
 
 Device utilization summary:
@@ -313,12 +502,12 @@ Device utilization summary:
 
 Selected Device : 3s250ecp132-5 
 
- Number of Slices:                       50  out of   2448     2%  
- Number of Slice Flip Flops:             47  out of   4896     0%  
- Number of 4 input LUTs:                 89  out of   4896     1%  
- Number of IOs:                          19
- Number of bonded IOBs:                  19  out of     92    20%  
- Number of GCLKs:                         1  out of     24     4%  
+ Number of Slices:                      314  out of   2448    12%  
+ Number of Slice Flip Flops:            146  out of   4896     2%  
+ Number of 4 input LUTs:                589  out of   4896    12%  
+ Number of IOs:                          20
+ Number of bonded IOBs:                  20  out of     92    21%  
+ Number of GCLKs:                         2  out of     24     8%  
 
 ---------------------------
 Partition Resource Summary:
@@ -341,8 +530,9 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-VGADriver/W                        | NONE(inrgb_4)          | 2     |
-CLK                                | BUFGP                  | 45    |
+VGADriver/FRAME1                   | BUFG                   | 74    |
+VGADriver/W                        | NONE(inrgb_7)          | 1     |
+CLK                                | BUFGP                  | 71    |
 -----------------------------------+------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
@@ -354,9 +544,9 @@ Timing Summary:
 ---------------
 Speed Grade: -5
 
-   Minimum period: 5.905ns (Maximum Frequency: 169.349MHz)
+   Minimum period: 12.278ns (Maximum Frequency: 81.445MHz)
    Minimum input arrival time before clock: No path found
-   Maximum output required time after clock: 4.221ns
+   Maximum output required time after clock: 4.326ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -364,35 +554,106 @@ Timing Detail:
 All values displayed in nanoseconds (ns)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'CLK'
-  Clock period: 5.905ns (frequency: 169.349MHz)
-  Total number of paths / destination ports: 1505 / 95
+Timing constraint: Default period analysis for Clock 'VGADriver/FRAME1'
+  Clock period: 12.278ns (frequency: 81.445MHz)
+  Total number of paths / destination ports: 614702 / 124
 -------------------------------------------------------------------------
-Delay:               5.905ns (Levels of Logic = 4)
-  Source:            VGADriver/vert_6 (FF)
-  Destination:       VGADriver/Y_9 (FF)
-  Source Clock:      CLK rising
-  Destination Clock: CLK rising
+Delay:               12.278ns (Levels of Logic = 16)
+  Source:            lp_6 (FF)
+  Destination:       son (FF)
+  Source Clock:      VGADriver/FRAME1 rising
+  Destination Clock: VGADriver/FRAME1 rising
 
-  Data Path: VGADriver/vert_6 to VGADriver/Y_9
+  Data Path: lp_6 to son
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             4   0.514   0.651  VGADriver/vert_6 (VGADriver/vert_6)
-     LUT2_L:I0->LO         1   0.612   0.103  VGADriver/vert_cmp_eq00001_SW0 (VGADriver/X_and000093)
-     LUT4:I3->O            3   0.612   0.454  VGADriver/vert_cmp_eq00001 (VGADriver/N7)
-     LUT4_D:I3->O          4   0.612   0.502  VGADriver/X_and0000136 (VGADriver/X_and0000136)
-     LUT4:I3->O           10   0.612   0.750  VGADriver/X_and0000151_2 (VGADriver/X_and0000151_1)
-     FDE:CE                    0.483          VGADriver/Y_0
+     FDE:C->Q             19   0.514   0.925  lp_6 (lp_6)
+     LUT4:I3->O            5   0.612   0.607  hper_add0001<10>11 (hper_add0001<10>_bdd0)
+     LUT2:I1->O            1   0.612   0.000  hper_add0001<9>11 (hper_add0001<9>1)
+     MUXCY:S->O            0   0.404   0.000  Madd_prescaler_add0002_cy<9> (Madd_prescaler_add0002_cy<9>)
+     XORCY:CI->O           1   0.699   0.426  Madd_prescaler_add0002_xor<10> (prescaler_add0002<10>)
+     LUT2:I1->O            1   0.612   0.000  Mcompar_prescaler_cmp_le0003_lut<10> (Mcompar_prescaler_cmp_le0003_lut<10>)
+     MUXCY:S->O            3   0.752   0.454  Mcompar_prescaler_cmp_le0003_cy<10> (prescaler_cmp_le0003)
+     LUT4_D:I3->O         21   0.612   0.962  son_not0001557_1 (son_not0001557)
+     LUT4:I3->O            1   0.612   0.000  prescaler_mux0000<0>2 (prescaler_mux0000<0>)
+     MUXCY:S->O            1   0.404   0.000  Mcompar_son_cmp_lt0006_cy<0> (Mcompar_son_cmp_lt0006_cy<0>)
+     MUXCY:CI->O           1   0.052   0.000  Mcompar_son_cmp_lt0006_cy<1> (Mcompar_son_cmp_lt0006_cy<1>)
+     MUXCY:CI->O           1   0.052   0.000  Mcompar_son_cmp_lt0006_cy<2> (Mcompar_son_cmp_lt0006_cy<2>)
+     MUXCY:CI->O           1   0.052   0.000  Mcompar_son_cmp_lt0006_cy<3> (Mcompar_son_cmp_lt0006_cy<3>)
+     MUXCY:CI->O           1   0.052   0.000  Mcompar_son_cmp_lt0006_cy<4> (Mcompar_son_cmp_lt0006_cy<4>)
+     MUXCY:CI->O           1   0.052   0.000  Mcompar_son_cmp_lt0006_cy<5> (Mcompar_son_cmp_lt0006_cy<5>)
+     MUXCY:CI->O          21   0.399   0.962  Mcompar_son_cmp_lt0006_cy<6> (Mcompar_son_cmp_lt0006_cy<6>)
+     LUT4:I3->O            1   0.612   0.357  son_not000137 (son_not0001)
+     FDE:CE                    0.483          son
     ----------------------------------------
-    Total                      5.905ns (3.445ns logic, 2.460ns route)
-                                       (58.3% logic, 41.7% route)
+    Total                     12.278ns (7.585ns logic, 4.693ns route)
+                                       (61.8% logic, 38.2% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK'
+  Clock period: 7.122ns (frequency: 140.416MHz)
+  Total number of paths / destination ports: 10442 / 122
+-------------------------------------------------------------------------
+Delay:               7.122ns (Levels of Logic = 38)
+  Source:            SpeakerDriver/prescaler_1 (FF)
+  Destination:       SpeakerDriver/prescaler_24 (FF)
+  Source Clock:      CLK rising
+  Destination Clock: CLK rising
+
+  Data Path: SpeakerDriver/prescaler_1 to SpeakerDriver/prescaler_24
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              2   0.514   0.532  SpeakerDriver/prescaler_1 (SpeakerDriver/prescaler_1)
+     LUT1:I0->O            1   0.612   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<0>_rt (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<0>_rt)
+     MUXCY:S->O            1   0.404   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<0> (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<0>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<1> (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<1>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<2> (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<2>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<3> (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<3>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<4> (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<4>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<5> (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<5>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<6> (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<6>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<7> (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<7>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<8> (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<8>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<9> (SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<9>)
+     MUXCY:CI->O          26   0.288   1.140  SpeakerDriver/Mcompar_sout_cmp_ge0000_cy<10> (SpeakerDriver/sout_cmp_ge0000)
+     LUT2:I1->O            1   0.612   0.000  SpeakerDriver/Madd_prescaler_add0000_lut<0> (SpeakerDriver/Madd_prescaler_add0000_lut<0>)
+     MUXCY:S->O            1   0.404   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<0> (SpeakerDriver/Madd_prescaler_add0000_cy<0>)
+     MUXCY:CI->O           1   0.052   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<1> (SpeakerDriver/Madd_prescaler_add0000_cy<1>)
+     MUXCY:CI->O           1   0.052   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<2> (SpeakerDriver/Madd_prescaler_add0000_cy<2>)
+     MUXCY:CI->O           1   0.052   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<3> (SpeakerDriver/Madd_prescaler_add0000_cy<3>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<4> (SpeakerDriver/Madd_prescaler_add0000_cy<4>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<5> (SpeakerDriver/Madd_prescaler_add0000_cy<5>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<6> (SpeakerDriver/Madd_prescaler_add0000_cy<6>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<7> (SpeakerDriver/Madd_prescaler_add0000_cy<7>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<8> (SpeakerDriver/Madd_prescaler_add0000_cy<8>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<9> (SpeakerDriver/Madd_prescaler_add0000_cy<9>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<10> (SpeakerDriver/Madd_prescaler_add0000_cy<10>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<11> (SpeakerDriver/Madd_prescaler_add0000_cy<11>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<12> (SpeakerDriver/Madd_prescaler_add0000_cy<12>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<13> (SpeakerDriver/Madd_prescaler_add0000_cy<13>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<14> (SpeakerDriver/Madd_prescaler_add0000_cy<14>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<15> (SpeakerDriver/Madd_prescaler_add0000_cy<15>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<16> (SpeakerDriver/Madd_prescaler_add0000_cy<16>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<17> (SpeakerDriver/Madd_prescaler_add0000_cy<17>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<18> (SpeakerDriver/Madd_prescaler_add0000_cy<18>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<19> (SpeakerDriver/Madd_prescaler_add0000_cy<19>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<20> (SpeakerDriver/Madd_prescaler_add0000_cy<20>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<21> (SpeakerDriver/Madd_prescaler_add0000_cy<21>)
+     MUXCY:CI->O           1   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<22> (SpeakerDriver/Madd_prescaler_add0000_cy<22>)
+     MUXCY:CI->O           0   0.051   0.000  SpeakerDriver/Madd_prescaler_add0000_cy<23> (SpeakerDriver/Madd_prescaler_add0000_cy<23>)
+     XORCY:CI->O           1   0.699   0.000  SpeakerDriver/Madd_prescaler_add0000_xor<24> (SpeakerDriver/prescaler_add0000<24>)
+     FDR:D                     0.268          SpeakerDriver/prescaler_24
+    ----------------------------------------
+    Total                      7.122ns (5.449ns logic, 1.672ns route)
+                                       (76.5% logic, 23.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
-  Total number of paths / destination ports: 10 / 10
+  Total number of paths / destination ports: 11 / 11
 -------------------------------------------------------------------------
-Offset:              4.221ns (Levels of Logic = 1)
+Offset:              4.326ns (Levels of Logic = 1)
   Source:            VGADriver/RGB_7 (FF)
   Destination:       RGB<7> (PAD)
   Source Clock:      CLK rising
@@ -401,23 +662,23 @@ Offset:              4.221ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDS:C->Q              5   0.514   0.538  VGADriver/RGB_7 (VGADriver/RGB_7)
+     FDR:C->Q              8   0.514   0.643  VGADriver/RGB_7 (VGADriver/RGB_7)
      OBUF:I->O                 3.169          RGB_0_OBUF (RGB<0>)
     ----------------------------------------
-    Total                      4.221ns (3.683ns logic, 0.538ns route)
-                                       (87.3% logic, 12.7% route)
+    Total                      4.326ns (3.683ns logic, 0.643ns route)
+                                       (85.1% logic, 14.9% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 5.42 secs
+Total REAL time to Xst completion: 10.00 secs
+Total CPU time to Xst completion: 9.75 secs
  
 --> 
 
-Total memory usage is 217424 kilobytes
+Total memory usage is 225232 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    3 (   0 filtered)
-Number of infos    :    5 (   0 filtered)
+Number of warnings :   61 (   0 filtered)
+Number of infos    :    4 (   0 filtered)
 

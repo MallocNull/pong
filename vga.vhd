@@ -7,11 +7,10 @@ entity vga is
 	port (
 		CLK	: in std_logic;
 		
-		LED	: out std_logic_vector(7 downto 0);
-		
 		IRGB	: in std_logic_vector(7 downto 0);
 		RGB	: out std_logic_vector(7 downto 0);
 		
+		FRAME: out std_logic;
 		W	: out std_logic;
 		X	: out std_logic_vector(9 downto 0);
 		Y	: out std_logic_vector(9 downto 0);
@@ -26,19 +25,19 @@ architecture Behavioral of vga is
 	signal vert				: std_logic_vector(9 downto 0);
 begin
 
-process (CLK) begin
+process (CLK)
+	variable fout : std_logic := '0';
+begin
 	if CLK'event and CLK = '1' then
-		-- 144 and 784
-		if (horiz >= 146) and (horiz < 788)
-		-- 39 and 519
-		and (vert >= 32) and (vert < 519) then
+		if (horiz >= 145) and (horiz < 788)
+		and (vert >= 35) and (vert < 514) then
 			W <= '1';
 			RGB <= IRGB;
-			X <= horiz - 144 + 1;
-			Y <= vert - 39 + 1;
+			X <= horiz - 146 + 1;
+			Y <= vert - 34 + 1;
 		else
 			W <= '0';
-			RGB <= "11100011";
+			RGB <= "00000000";
 		end if;
 		
 		if (horiz > 0) and (horiz < 97) then
@@ -60,8 +59,13 @@ process (CLK) begin
 		end if;
 		
 		if (vert = 521) then
+			fout := '1';
 			vert <= (others => '0');
+		else
+			fout := '0';
 		end if;
+		
+		FRAME <= fout;
 	end if;
 end process;
 

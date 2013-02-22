@@ -1,4 +1,6 @@
-AR vga behavioral C:/fpga/pong/vga.vhd sub00/vhpl03 1361499657
-AR main behavioral C:/fpga/pong/main.vhd sub00/vhpl01 1361499659
-EN main NULL C:/fpga/pong/main.vhd sub00/vhpl00 1361499658
-EN vga NULL C:/fpga/pong/vga.vhd sub00/vhpl02 1361499656
+AR speaker behavioral C:/fpga/pong/speaker.vhd sub00/vhpl05 1361569314
+AR vga behavioral C:/fpga/pong/vga.vhd sub00/vhpl03 1361569316
+AR main behavioral C:/fpga/pong/main.vhd sub00/vhpl01 1361569318
+EN main NULL C:/fpga/pong/main.vhd sub00/vhpl00 1361569317
+EN vga NULL C:/fpga/pong/vga.vhd sub00/vhpl02 1361569315
+EN speaker NULL C:/fpga/pong/speaker.vhd sub00/vhpl04 1361569313

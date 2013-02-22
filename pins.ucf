@@ -1,5 +1,7 @@
 NET "CLK" LOC = "M6";
 
+NET "POUT" LOC = "B2";
+
 NET "LED<0>" LOC = "M5";
 NET "LED<1>" LOC = "M11";
 NET "LED<2>" LOC = "P7";

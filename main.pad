@@ -1,7 +1,7 @@
 Release 14.1 - par P.15xf (nt)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-Thu Feb 21 20:21:23 2013
+Fri Feb 22 15:42:30 2013
 
 
 # NOTE: This file is designed to be imported into a spreadsheet program
@@ -34,7 +34,7 @@ A12||DIFFS|IO_L02N_0|UNUSED||0|||||||||
 A13||DIFFM|IO_L01P_0|UNUSED||0|||||||||
 A14|||TDO||||||||||||
 B1||DIFFS|IO_L01N_3|UNUSED||3|||||||||
-B2||DIFFM|IO_L01P_3|UNUSED||3|||||||||
+B2|POUT|IOB|IO_L01P_3|OUTPUT|LVCMOS25*|3|12|SLOW|NONE**|||LOCATED|NO|NONE|
 B3||DIFFS|IO_L11N_0/HSWAP|UNUSED||0|||||||||
 B4||DIFFM|IO_L10P_0|UNUSED||0|||||||||
 B5||DIFFM|IO_L09P_0|UNUSED||0|||||||||

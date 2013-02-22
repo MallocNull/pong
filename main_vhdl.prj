@@ -1,2 +1,3 @@
 vhdl work "C:\fpga\pong\vga.vhd"
+vhdl work "C:\fpga\pong\speaker.vhd"
 vhdl work "C:\fpga\pong\main.vhd"
