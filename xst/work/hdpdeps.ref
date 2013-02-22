@@ -1,0 +1,11 @@
+V3 7
+FL C:/fpga/pong/main.vhd 2013/02/21.18:24:26 P.15xf
+EN work/main 1361499658 FL C:/fpga/pong/main.vhd PB ieee/std_logic_1164 1335251622 \
+      PB ieee/std_logic_arith 1335251623 PB ieee/STD_LOGIC_UNSIGNED 1335251625
+AR work/main/Behavioral 1361499659 \
+      FL C:/fpga/pong/main.vhd EN work/main 1361499658 CP vga
+FL C:/fpga/pong/vga.vhd 2013/02/21.20:20:49 P.15xf
+EN work/vga 1361499656 FL C:/fpga/pong/vga.vhd PB ieee/std_logic_1164 1335251622 \
+      PB ieee/std_logic_arith 1335251623 PB ieee/STD_LOGIC_UNSIGNED 1335251625
+AR work/vga/Behavioral 1361499657 \
+      FL C:/fpga/pong/vga.vhd EN work/vga 1361499656
